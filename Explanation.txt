@@ -1,0 +1,38 @@
+LIBRARIES USED 
+numpy: A library for numerical operations in Python.
+imageio: Used for reading and writing images. Here, we use imageio.v2 as it was suggested in the deprecation warning.
+scipy.ndimage: Part of the SciPy library, used for various image processing operations.
+cv2: OpenCV library, widely used for computer vision tasks.
+
+
+INSTALLATION COMMANDS
+pip install numpy
+pip install imageio
+pip install image
+pip install numpy 
+
+
+UPGRADATION COMMANDS
+pip install --upgrade pillow
+
+
+RGB@GRAY FUNCTION 
+- Converts an RGB (Red, Green, Blue) color image into a grayscale image.
+- rgb[..., :3]: Selects RGB color channels of the image. The ... is used for slicing and represents all the data in the previous dimensions.
+- [0.2989, 0.5870, 0.1140]: Weights for each color channel. These are used to calculate a weighted sum of the RGB values for each pixel,
+    giving more importance to the green channel (as the human eye is more sensitive to green).
+- Math Behind Grayscale Conversion: Grayscale Value = 0.2989 * Red + 0.5870 * Green + 0.1140 * Blue
+
+
+DODGE FUNCTION 
+- Creates a dodge effect by combining two images.
+- front: The image that will be lightened.
+- back: The image that serves as the background.
+- Dodge Effect Calculation:
+    final_sketch = front * 255 / (255 - back): formula for the dodge effect, it calculates the ratio of intensities between the two images.
+- Handling Overflow and Clipping:
+    final_sketch[final_sketch > 255] = 255: Clips any values greater than 255 to 255. Ensures that the pixel values stay within valid range.
+    final_sketch[back == 255] = 255: Handles cases where the background image is completely white (255). 
+    Ensures that the final pixel value is set to 255 in these cases.
+- Data Type Conversion:
+    return final_sketch.astype('uint8'): Converts the data type of the resulting image to 8-bit unsigned integer, which is the typical range for image pixel values.
