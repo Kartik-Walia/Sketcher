@@ -4,7 +4,7 @@ import scipy.ndimage
 import cv2
 
 # Input image file name
-img = "img1.jpg"
+img = "Test Images/img2.jpg"
 
 # Function to convert an RGB image to grayscale
 def rgb2gray(rgb):
@@ -33,4 +33,4 @@ blur = scipy.ndimage.gaussian_filter(i, sigma=27)
 r = dodge(blur, gray)
 
 # Save the final sketch as an image file
-cv2.imwrite('final.png', r)
+cv2.imwrite('final_sketch.png', r)
